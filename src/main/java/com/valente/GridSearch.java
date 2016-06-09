@@ -1,13 +1,14 @@
 package com.valente;
 
+import java.io.*;
 import java.util.Scanner;
 
 /**
  * Created by uq4n on 06/06/2016.
  */
 public class GridSearch {
-    public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
+    public static void main(String[] args) throws FileNotFoundException {
+        Scanner in = new Scanner(new FileInputStream("src/input_grid5.txt"));
         int t = in.nextInt();
         for(int a0 = 0; a0 < t; a0++){
             int R = in.nextInt();
@@ -22,26 +23,43 @@ public class GridSearch {
             for(int P_i=0; P_i < r; P_i++){
                 P[P_i] = in.next();
             }
+            System.out.println(solve(G,P,C,c,R,r) ? "YES" : "NO");
         }
     }
 
-    public static int solve(String[] G, String[] P, int C, int c, int R, int r){
-        int occurrence = 0;
 
-        for (int row = 0; row < R ; row++) {
-            for (int row_pattern = 0; row_pattern < P.length; row_pattern++) {
-                if(!matchLine(G[row],P[row]))
+    public static boolean solve(String[] G, String[] P, int C, int c, int R, int r){
+
+        StringBuilder linearG = new StringBuilder("");
+        for (int i = 0; i < R; i++)
+            linearG.append(G[i]);
+
+        StringBuilder linearP = new StringBuilder("");
+        for (int i = 0; i < r; i++)
+            linearP.append(P[i]);
+
+        for (int i = 0; i < R*C - c ; i++) {
+            int matchCount = 0;
+            int i2 = i;
+            //char[] sample = new char[C * r];
+
+            for (int j = 0; j < r*c; j++) {
+                int columnP = j % c;
+                if(i2 + j < linearG.length() && linearG.charAt(i2 + j) == linearP.charAt(j)){
+                    matchCount ++;
+                }else{
                     break;
-
-                if(row_pattern == P.length -1)
-                    occurrence++;
+                }
+                if(columnP == c-1) {
+                    i2 = i2 + C - c ;
+                    continue;
+                }
+            }
+            if(matchCount == linearP.length()) {
+                return true;
             }
         }
 
-        return occurrence;
-    }
-
-    private static boolean matchLine(String s, String s1) {
-
+        return false;
     }
 }
