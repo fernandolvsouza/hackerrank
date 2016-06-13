@@ -45,7 +45,7 @@ public class GridSearch {
             for (int j = 0; j < r*c; j++) {
                 int columnP = j % c;
                 int columnG = i % C;
-                if(c - columnP > C - columnG)
+                if(c - columnP > C - columnG) // don't match patterns in broken lines
                     break;
 
                 if(compareIndexG + j < linearG.length()
