@@ -19,9 +19,6 @@ public class WordSort {
 
         final Map<Integer,Integer> countByHotel = new HashMap<Integer, Integer>();
 
-
-        for (int i = 0; i < M ; j++) {
-
         for (int j = 0; j < M ; j++) {
             int id = s.nextInt();
             s.nextLine();

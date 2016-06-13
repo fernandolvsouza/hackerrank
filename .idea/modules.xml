@@ -3,8 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/hackerrank.iml" filepath="$PROJECT_DIR$/.idea/modules/hackerrank.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/hackerrank_main.iml" filepath="$PROJECT_DIR$/.idea/modules/hackerrank_main.iml" group="hackerrank" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/hackerrank_test.iml" filepath="$PROJECT_DIR$/.idea/modules/hackerrank_test.iml" group="hackerrank" />
     </modules>
   </component>
 </project>
