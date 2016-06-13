@@ -8,7 +8,7 @@ import java.util.Scanner;
  */
 public class GridSearch {
     public static void main(String[] args) throws FileNotFoundException {
-        Scanner in = new Scanner(new FileInputStream("src/input_grid5.txt"));
+        Scanner in = new Scanner(new FileInputStream("src/input_grid6.txt"));
         int t = in.nextInt();
         for(int a0 = 0; a0 < t; a0++){
             int R = in.nextInt();
@@ -40,18 +40,22 @@ public class GridSearch {
 
         for (int i = 0; i < R*C - c ; i++) {
             int matchCount = 0;
-            int i2 = i;
-            //char[] sample = new char[C * r];
+            int compareIndexG = i;
 
             for (int j = 0; j < r*c; j++) {
                 int columnP = j % c;
-                if(i2 + j < linearG.length() && linearG.charAt(i2 + j) == linearP.charAt(j)){
+                int columnG = i % C;
+                if(c - columnP > C - columnG)
+                    break;
+
+                if(compareIndexG + j < linearG.length()
+                        && linearG.charAt(compareIndexG + j) == linearP.charAt(j)){
                     matchCount ++;
                 }else{
                     break;
                 }
                 if(columnP == c-1) {
-                    i2 = i2 + C - c ;
+                    compareIndexG = compareIndexG + C - c ;
                     continue;
                 }
             }
