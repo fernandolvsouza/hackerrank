@@ -11,7 +11,7 @@ public class Polygon {
 
     public static void main(String[] args) throws FileNotFoundException {
 
-        FileReader i = new FileReader("src/teste.txt");
+        FileReader i = new FileReader("src/main/resources/teste.txt");
         Scanner s = new Scanner(i);
         int squares = 0;
         int rect = 0;

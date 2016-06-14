@@ -8,7 +8,7 @@ import java.util.Scanner;
  */
 public class Squares {
     public static void main(String[] args) throws FileNotFoundException {
-        FileReader i = new FileReader("src/teste.txt");
+        FileReader i = new FileReader("src/main/resources/teste.txt");
         Scanner s = new Scanner(i);
 
         int T = s.nextInt();

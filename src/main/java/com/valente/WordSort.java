@@ -11,7 +11,7 @@ public class WordSort {
 
     public static void main(String[] args) throws FileNotFoundException {
 
-        FileReader i = new FileReader("src/teste2.txt");
+        FileReader i = new FileReader("src/main/resources/teste2.txt");
         Scanner s = new Scanner(i);
 
         String[] words = s.nextLine().split("\\s");

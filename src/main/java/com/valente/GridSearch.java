@@ -8,7 +8,7 @@ import java.util.Scanner;
  */
 public class GridSearch {
     public static void main(String[] args) throws FileNotFoundException {
-        Scanner in = new Scanner(new FileInputStream("src/input_grid6.txt"));
+        Scanner in = new Scanner(new FileInputStream("src/main/resources/input_grid6.txt"));
         int t = in.nextInt();
         for(int a0 = 0; a0 < t; a0++){
             int R = in.nextInt();

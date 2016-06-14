@@ -9,7 +9,7 @@ import java.util.Scanner;
  */
 public class MaxMin {
     public static void main(String[] args) throws FileNotFoundException {
-        FileReader f = new FileReader("src/teste2.txt");
+        FileReader f = new FileReader("src/main/resources/teste2.txt");
         Scanner in = new Scanner(f);
 
         int n = in.nextInt();

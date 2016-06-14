@@ -9,7 +9,7 @@ import java.util.Scanner;
  */
 public class LarrysArray {
     public static void main(String[] args) throws FileNotFoundException {
-        FileReader f= new FileReader("src/larry_input.txt");
+        FileReader f= new FileReader("src/main/resources/larry_input.txt");
         Scanner in = new Scanner(f);
 
         int T = in.nextInt();
