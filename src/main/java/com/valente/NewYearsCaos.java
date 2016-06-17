@@ -64,18 +64,23 @@ public class NewYearsCaos {
     private static long  merge(int lo, int mid, int hi ,int[] q, int[] aux) {
         long inversions = 0;
 
-        // copy to aux[]
-        for (int k = lo; k <= hi; k++) {
-            aux[k] = q[k];
+        for (int i = 0; i < q.length; i++) {
+            aux[i] = q[i];
         }
 
-        // merge back to a[]
-        int i = lo, j = mid+1;
+        int i = lo;
+        int j = mid+1;
         for (int k = lo; k <= hi; k++) {
-            if      (i > mid)           q[k] = aux[j++];
-            else if (j > hi)            q[k] = aux[i++];
-            else if (aux[j] < aux[i]) { q[k] = aux[j++]; inversions += (mid - i + 1); }
-            else                        q[k] = aux[i++];
+            if(j > hi)
+                q[k] = aux[i++];
+            else if(i > mid)
+                q[k] = aux[j++];
+            else if(aux[j] < aux[i]){
+                q[k] = aux[j++]; inversions+= (mid - i + 1);
+            }
+            else
+                q[k] = aux[i++];
+
         }
         return inversions;
     }
