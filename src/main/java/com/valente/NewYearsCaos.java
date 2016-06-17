@@ -21,7 +21,7 @@ import java.util.*;
  Too chaotic*/
 public class NewYearsCaos {
     public static void main(String[] args) throws FileNotFoundException {
-        FileReader f = new FileReader("src/main/resources/newyears2.txt");
+        FileReader f = new FileReader("src/main/resources/newyears06.txt");
         Scanner s = new Scanner(f);
         int T = s.nextInt();
 
@@ -43,19 +43,16 @@ public class NewYearsCaos {
         }
 
         int inversions = 0;
+
         for (int i = 0; i < n; i++) {
             int pos_original = Collections.binarySearch(original,q[i]);
 
-            int offset = pos_original - (i - n + original.size());
-
-            if(offset > 2){
+            if(pos_original > 2){
                 System.out.println("Too chaotic");
                 return;
             }
 
-
-            inversions = inversions + offset;
-
+            inversions = inversions + pos_original;
             original.remove(pos_original);
         }
 
