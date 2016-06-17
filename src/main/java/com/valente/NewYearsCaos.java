@@ -21,42 +21,64 @@ import java.util.*;
  Too chaotic*/
 public class NewYearsCaos {
     public static void main(String[] args) throws FileNotFoundException {
-        FileReader f = new FileReader("src/main/resources/newyears06.txt");
+        FileReader f = new FileReader("src/main/resources/newyears2.txt");
         Scanner s = new Scanner(f);
         int T = s.nextInt();
 
         for (int i = 0; i < T; i++) {
             int n  = s.nextInt();
             int[] queueFinal = new int[n];
+            int[] aux = new int[n];
             for (int j = 0; j < n; j++) {
                 queueFinal[j] = s.nextInt();
+                aux[j] = queueFinal[j];
             }
-            solve(queueFinal, n );
-        }
-    }
 
-    private static void solve(int[] q, int n) {
-
-        List original = new ArrayList(n);
-        for (int i = 0; i < n; i++) {
-            original.add(i+1);
-        }
-
-        int inversions = 0;
-
-        for (int i = 0; i < n; i++) {
-            int pos_original = Collections.binarySearch(original,q[i]);
-
-            if(pos_original > 2){
+            boolean tooChaotic = false;
+            for (int j = 0; j < n; j++) {
+                if(j < queueFinal[j] - 3 )
+                    tooChaotic = true;
+            }
+            if(tooChaotic)
                 System.out.println("Too chaotic");
-                return;
-            }
+            else
+                System.out.println(solve(0, queueFinal.length-1 , queueFinal, aux));
+        }
+    }
 
-            inversions = inversions + pos_original;
-            original.remove(pos_original);
+    private static long  solve(int lo, int hi ,int[] q, int[] aux) {
+
+        if(lo >= hi )
+            return 0;
+
+        int middle = lo + (hi-lo)/2;
+
+        long left = solve(lo, middle, q, aux);
+        long right  = solve(middle+1, hi, q,aux);
+
+        long leftRight = merge(lo,middle,hi, q,aux);
+
+        return left + right + leftRight;
+    }
+
+    private static long  merge(int lo, int mid, int hi ,int[] q, int[] aux) {
+        long inversions = 0;
+
+        // copy to aux[]
+        for (int k = lo; k <= hi; k++) {
+            aux[k] = q[k];
         }
 
-        System.out.println(inversions);
+        // merge back to a[]
+        int i = lo, j = mid+1;
+        for (int k = lo; k <= hi; k++) {
+            if      (i > mid)           q[k] = aux[j++];
+            else if (j > hi)            q[k] = aux[i++];
+            else if (aux[j] < aux[i]) { q[k] = aux[j++]; inversions += (mid - i + 1); }
+            else                        q[k] = aux[i++];
+        }
+        return inversions;
     }
+
 
 }
